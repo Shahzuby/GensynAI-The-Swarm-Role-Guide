@@ -53,7 +53,7 @@ https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
 screen -S gswarmbot
 ```
 
-In your terminal, run:
+In your screen, run:
 ```bash
 gswarm
 ```
