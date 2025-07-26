@@ -27,18 +27,18 @@ https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
 
 ### now goto your gensyn node terminal and do all these simple task:
 
-## ✨ Step 2: install nano
+## ✨ Step 3: install nano
 
 ```bash
 sudo apt install nano
 ```
 
-### Step 3: make nano file
+### Step 4: make nano file
 ```bash
 nano install_gswarm.sh
 ```
 
-## 🐞 Step 4: paste script in nano 
+## 🐞 Step 5: paste script in nano 
 
 ```bash
 #!/bin/bash
@@ -101,14 +101,14 @@ echo "🎉 Done!"
 
 After paste the script → save (Ctrl+X, Y, Enter)
 
-## 🐞 Step 5: make script excutable  
+## 🐞 Step 6: make script excutable  
 
 ```bash
 chmod +x install_gswarm.sh
 ./install_gswarm.sh
 ```
 
-## 🐞 Step 6: after that just run
+## 🐞 Step 7: after that just run
 
 ```bash
 gswarm
@@ -121,7 +121,7 @@ Follow the prompts and enter:
 
 ---
 
-## 🤝 Step 7: Link Discord and Telegram
+## 🤝 Step 8: Link Discord and Telegram
 
 ### 1. Get Verification Code:
 - Join the Discord server
