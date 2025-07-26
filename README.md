@@ -99,6 +99,8 @@ echo ""
 echo "🎉 Done!"
 ```
 
+After paste the script → save (Ctrl+X, Y, Enter)
+
 ## 🐞 Step 5: make script excutable  
 
 ```bash
