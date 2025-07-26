@@ -4,30 +4,8 @@ This guide will help you set up the **Gswarm Telegram Bot** to monitor your Swar
 
 ---
 
-## ✨ Step 1: Install Gswarm
 
-### Install Go (Golang):
-```bash
-sudo rm -rf /usr/local/go
-curl -L https://go.dev/dl/go1.22.4.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
-
-# Add Go to PATH
-echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
-source ~/.bash_profile
-
-go version
-```
-
-### Install Gswarm:
-```bash
-go install github.com/Deep-Commit/gswarm/cmd/gswarm@latest
-```
-
----
-
-## 🐞 Step 2: Create and Setup Telegram Bot
-
-### 1. Create a Bot:
+### Step 1: Create a Bot
 - Open Telegram and search **@BotFather**
 - Send `/newbot`
 - Choose a **name** and **username**
@@ -47,16 +25,93 @@ https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
 
 ---
 
-## 🚀 Step 3: Run Gswarm Bot
+### now goto your gensyn node terminal and do all these simple task:
+
+## ✨ Step 2: install nano
 
 ```bash
-screen -S gswarmbot
+sudo apt install nano
 ```
 
-In your screen, run:
+### Step 3: make nano file
+```bash
+nano install_gswarm.sh
+```
+
+## 🐞 Step 4: paste script in nano 
+
+```bash
+#!/bin/bash
+set -e
+
+echo "=== Step 1: Installing Go 1.24.0 ==="
+wget -q https://go.dev/dl/go1.24.0.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz
+rm go1.24.0.linux-amd64.tar.gz
+
+echo "=== Step 2: Setting Go PATH ==="
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# Persist to bashrc
+if ! grep -q "/usr/local/go/bin" ~/.bashrc; then
+  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+fi
+if ! grep -q "$HOME/go/bin" ~/.bashrc; then
+  echo 'export PATH=$PATH:$HOME/go/bin' >> ~/.bashrc
+fi
+
+echo "=== Step 3: Verifying Go installation ==="
+go version
+
+echo "=== Step 4: Installing GSwarm via go install (Option 1) ==="
+go install github.com/Deep-Commit/gswarm/cmd/gswarm@latest
+
+if [ -f "$HOME/go/bin/gswarm" ]; then
+  echo "=== Step 5: Moving gswarm binary to /usr/local/bin ==="
+  sudo mv "$HOME/go/bin/gswarm" /usr/local/bin/gswarm
+fi
+
+echo "=== Step 6: Verifying gswarm installation ==="
+gswarm --version || echo "❌ gswarm install failed via go install"
+
+echo "=== Step 7: Also installing from source (Option 2) ==="
+rm -rf "$HOME/gswarm"
+git clone https://github.com/Deep-Commit/gswarm.git
+cd gswarm
+make build
+sudo make install
+cd ..
+rm -rf gswarm
+
+echo "=== Step 8: How to use GSwarm ==="
+echo ""
+echo "✅ To run the monitoring service:"
+echo "    gswarm"
+echo ""
+echo "📦 To set up Telegram notifications:"
+echo "    1. Get your Telegram bot token from @BotFather"
+echo "    2. Get your Telegram chat ID (can be a user or group)"
+echo "    3. Run gswarm with proper config or env vars"
+echo ""
+echo "🎉 Done!"
+```
+
+## 🐞 Step 5: make script excutable  
+
+```bash
+chmod +x install_gswarm.sh
+./install_gswarm.sh
+```
+
+## 🐞 Step 6: after that just run
+
 ```bash
 gswarm
 ```
+
 Follow the prompts and enter:
 - Your **Bot Token**
 - Your **ID**
@@ -64,7 +119,7 @@ Follow the prompts and enter:
 
 ---
 
-## 🤝 Step 4: Link Discord and Telegram
+## 🤝 Step 7: Link Discord and Telegram
 
 ### 1. Get Verification Code:
 - Join the Discord server
