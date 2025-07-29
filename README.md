@@ -147,4 +147,3 @@ Once verified, your Discord and Telegram will be linked, and you will earn **The
 - Use `screen` to keep the bot running 24/7
 - If `getUpdates` shows nothing, send a message to your bot and refresh
 
-follow https://t.me/andhiiTGkamaii for more updates 
